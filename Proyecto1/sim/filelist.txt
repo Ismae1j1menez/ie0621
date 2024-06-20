@@ -4,7 +4,7 @@
 # The DSim simulator in DSim Cloud will consume this file.
 
 +define+S50
-+define+VERBOSE
+#+define+VERBOSE
 
 +incdir+../design/
 -y ../design/
