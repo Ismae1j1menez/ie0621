@@ -8,7 +8,7 @@ simulations:
   - name: Sim 1
     options: >-
       -top work.top_hvl -L dut -uvm 1.2 +acc+b -waves waves.mxd -warn
-      EnumMustBePositive -timescale 1ns/1ps =UVM_TESTNAME=test1'
+      EnumMustBePositive -timescale 1ns/1ps +UVM_TESTNAME=test_1.sv
 source_files:
   - language: verilog
     path: filelist_V.txt
