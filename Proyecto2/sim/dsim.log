@@ -1,6 +1,6 @@
 =N:[UVMSource] Using sources from '/home/ismael/metrics-ca/dsim/20240422.0.0/uvm/1.2'
-=N:[UsageMeter (2024-06-20 11:55:54 -0600)] Using /etc/ssl/certs as location of CA certificates to verify license server.
-=N:[UsageMeter (2024-06-20 11:55:56 -0600)] usage server initial connection
+=N:[UsageMeter (2024-06-20 16:08:19 -0600)] Using /etc/ssl/certs as location of CA certificates to verify license server.
+=N:[UsageMeter (2024-06-20 16:08:26 -0600)] usage server initial connection
 =N:[License] 
 Licensed for Metrics Design Automation.
 =N:[License] New lease granted.
@@ -30,6 +30,9 @@ Optimizing...
 Building models...
 PLI/VPI access: +b 
 Simulation time precision is 1ps.
+  [1/6] module $root: 1700 functions, 3754 basic blocks
+  [3/6] CU scope $unit: 1 functions, 2 basic blocks
+  [4/6] module top_hvl: 2 functions, 6 basic blocks
 Linking image.so...
 Using default typical min/typ/max.
 =S:Begin run-time elaboration and static initialization...
@@ -58,8 +61,8 @@ UVM-1.2
 =N:[dumpMXD] preparing MXD dump to 'waves.mxd'.
 =N:[dump] Dump started at time 0
 =N:Starting event scheduler...
-UVM_WARNING @ 0: reporter [BDTYP] Cannot create a component of type 'test_1.sv' because it is not registered with the factory.
-UVM_FATAL @ 0: reporter [INVTST] Requested test from command line +UVM_TESTNAME=test_1.sv not found.
+UVM_WARNING @ 0: reporter [BDTYP] Cannot create a component of type 'test_1' because it is not registered with the factory.
+UVM_FATAL @ 0: reporter [INVTST] Requested test from command line +UVM_TESTNAME=test_1 not found.
 UVM_INFO /home/ismael/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/base/uvm_report_server.svh(847) @ 0: reporter [UVM/REPORT/SERVER] 
 --- UVM Report Summary ---
 
