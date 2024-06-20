@@ -1,6 +1,6 @@
 =N:[UVMSource] Using sources from '/home/ismael/metrics-ca/dsim/20240422.0.0/uvm/1.2'
-=N:[UsageMeter (2024-06-20 16:08:19 -0600)] Using /etc/ssl/certs as location of CA certificates to verify license server.
-=N:[UsageMeter (2024-06-20 16:08:26 -0600)] usage server initial connection
+=N:[UsageMeter (2024-06-20 17:02:47 -0600)] Using /etc/ssl/certs as location of CA certificates to verify license server.
+=N:[UsageMeter (2024-06-20 17:02:47 -0600)] usage server initial connection
 =N:[License] 
 Licensed for Metrics Design Automation.
 =N:[License] New lease granted.
@@ -30,9 +30,6 @@ Optimizing...
 Building models...
 PLI/VPI access: +b 
 Simulation time precision is 1ps.
-  [1/6] module $root: 1700 functions, 3754 basic blocks
-  [3/6] CU scope $unit: 1 functions, 2 basic blocks
-  [4/6] module top_hvl: 2 functions, 6 basic blocks
 Linking image.so...
 Using default typical min/typ/max.
 =S:Begin run-time elaboration and static initialization...

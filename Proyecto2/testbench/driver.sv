@@ -15,7 +15,7 @@ class arb_item extends uvm_sequence_item;
 
   // Constructor de la clase, inicializa el nombre del elemento de secuencia.
   function new(string name = "arb_item");
-    super.new(name);
+    super.new(name); // Llama al constructor de la clase base
   endfunction
 
   // Variables aleatorias y su tipo (randc para ciclos únicos, rand para aleatorio sin restricción).
@@ -47,7 +47,7 @@ class gen_item_seq extends uvm_sequence #(arb_item);
 
   // Constructor de la clase que inicializa una instancia de la secuencia con un nombre opcional.
   function new(string name="gen_item_seq");
-    super.new(name);
+    super.new(name); // Llama al constructor de la clase base
   endfunction
 
   // Variable aleatoria que determina el número de elementos `arb_item` a generar.
@@ -79,6 +79,7 @@ class gen_item_seq extends uvm_sequence #(arb_item);
 endclass
 
 
+// Clase `arb_driver` que extiende de `uvm_driver` para controlar la interfaz de la SDRAM.
 class arb_driver extends uvm_driver #(arb_item);
   `uvm_component_utils(arb_driver) // Macro para registrar el componente con la fábrica de UVM
 
@@ -96,7 +97,8 @@ class arb_driver extends uvm_driver #(arb_item);
   virtual function void build_phase(uvm_phase phase);
     super.build_phase(phase); // Llamada a la fase de construcción de la clase padre
     if (!uvm_config_db #(virtual interface_bus_master)::get(this, "", "VIRTUAL_INTERFACE", vif)) begin
-      `uvm_fatal("INTERFACE_CONNECT", "No se pudo obtener la interfaz virtual para el TB") // Error fatal si no se encuentra la interfaz
+      // Error fatal si no se encuentra la interfaz
+      `uvm_fatal("INTERFACE_CONNECT", "No se pudo obtener la interfaz virtual para el TB")
     end
   endfunction
 
@@ -110,7 +112,8 @@ class arb_driver extends uvm_driver #(arb_item);
     super.run_phase(phase); // Llamada a la fase de ejecución de la clase padre
     forever begin
       arb_item f_item; // Declarar una variable para el ítem de la secuencia
-      `uvm_info("DRV", $sformatf("Esperando ítem del secuenciador"), UVM_LOW) // Mensaje de información indicando que el driver está esperando un ítem
+      // Mensaje de información indicando que el driver está esperando un ítem
+      `uvm_info("DRV", $sformatf("Esperando ítem del secuenciador"), UVM_LOW) 
       seq_item_port.get_next_item(f_item); // Obtener el siguiente ítem del secuenciador
 
       // Realizar acciones basadas en el comando en el ítem
@@ -121,7 +124,6 @@ class arb_driver extends uvm_driver #(arb_item);
       end
 
       analysis_port.write(f_item); // Escribir el ítem en el puerto de análisis
-
       seq_item_port.item_done(); // Indicar que el ítem ha sido procesado
     end
   endtask
