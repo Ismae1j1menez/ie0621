@@ -1,5 +1,6 @@
-`include "uvm_macros.svh"
 import uvm_pkg::*;
+`include "uvm_macros.svh"
+`timescale 1ns/1ps
 
 module top_hdl();
   logic            sys_clk, sdram_clk;
