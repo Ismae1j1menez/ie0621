@@ -1,1 +1,98 @@
-=N:[LibUpdate] Updated library dut.
+=E:[IncNotFound]:
+    The following include files were not found in the include search path:    
+
+    ./../testbench/top_hvl.sv:1:1                   uvm_macros.svh    
+    Included from ../testbench/testbench.sv:1:10                      
+
+    Simulator invoked from directory: /home/ismael/Progra/Verificacion/ie0621/Proyecto2/sim    
+    Include search path:                                                                       
+
+        ./../testbench/    
+                           
+
+=E:[UndefinedMacro] <demotable>:
+    The following macros were never defined:    
+
+    ./../testbench/driver.sv:2:1                    uvm_object_utils_begin    
+    Included from ../testbench/testbench.sv:3:10    uvm_field_int             
+    ./../testbench/driver.sv:3:1                    uvm_field_int             
+    Included from ../testbench/testbench.sv:3:10    uvm_field_int             
+    ./../testbench/driver.sv:4:1                    uvm_field_int             
+    Included from ../testbench/testbench.sv:3:10    uvm_field_int             
+    ./../testbench/driver.sv:5:1                    uvm_field_int             
+    Included from ../testbench/testbench.sv:3:10    uvm_field_int             
+    ./../testbench/driver.sv:6:1                    uvm_field_int             
+    Included from ../testbench/testbench.sv:3:10    uvm_field_int             
+    ./../testbench/driver.sv:7:1                    uvm_object_utils_end      
+    Included from ../testbench/testbench.sv:3:10    uvm_object_utils          
+    ./../testbench/driver.sv:8:1                    uvm_info                  
+    Included from ../testbench/testbench.sv:3:10    uvm_info                  
+    ./../testbench/driver.sv:9:1                    uvm_info                  
+    Included from ../testbench/testbench.sv:3:10    uvm_component_utils       
+    ./../testbench/driver.sv:10:1                   uvm_fatal                 
+    Included from ../testbench/testbench.sv:3:10    uvm_info                  
+    ./../testbench/driver.sv:11:1                   uvm_info                  
+    Included from ../testbench/testbench.sv:3:10    uvm_analysis_imp_decl     
+    ./../testbench/driver.sv:12:1                   uvm_component_utils       
+    Included from ../testbench/testbench.sv:3:10    uvm_info                  
+    ./../testbench/driver.sv:36:1                   uvm_info                  
+    Included from ../testbench/testbench.sv:3:10    uvm_info                  
+    ./../testbench/driver.sv:51:1                   uvm_info                  
+    Included from ../testbench/testbench.sv:3:10    uvm_info                  
+    ./../testbench/driver.sv:57:1                   uvm_info                  
+    Included from ../testbench/testbench.sv:3:10    uvm_info                  
+    ./../testbench/driver.sv:62:1                   uvm_info                  
+    Included from ../testbench/testbench.sv:3:10    uvm_component_utils       
+    ./../testbench/driver.sv:67:1                   uvm_fatal                 
+    Included from ../testbench/testbench.sv:3:10    uvm_component_utils       
+    ./../testbench/driver.sv:81:1                   uvm_component_utils       
+    Included from ../testbench/testbench.sv:3:10    uvm_component_utils       
+    ./../testbench/driver.sv:93:1                   uvm_fatal                 
+    Included from ../testbench/testbench.sv:3:10    uvm_component_utils       
+    ./../testbench/driver.sv:125:1                  uvm_fatal                 
+    Included from ../testbench/testbench.sv:3:10    uvm_component_utils       
+    ./../testbench/scoreboard.sv:1:1                uvm_fatal                 
+    Included from ../testbench/testbench.sv:4:10    uvm_component_utils       
+    ./../testbench/scoreboard.sv:5:1                uvm_fatal                 
+    Included from ../testbench/testbench.sv:4:10                              
+    ./../testbench/scoreboard.sv:35:1                                         
+    Included from ../testbench/testbench.sv:4:10                              
+    ./../testbench/scoreboard.sv:44:1                                         
+    Included from ../testbench/testbench.sv:4:10                              
+    ./../testbench/scoreboard.sv:47:1                                         
+    Included from ../testbench/testbench.sv:4:10                              
+    ./../testbench/scoreboard.sv:58:1                                         
+    Included from ../testbench/testbench.sv:4:10                              
+    ./../testbench/scoreboard.sv:62:1                                         
+    Included from ../testbench/testbench.sv:4:10                              
+    ./../testbench/scoreboard.sv:69:1                                         
+    Included from ../testbench/testbench.sv:4:10                              
+    ./../testbench/scoreboard.sv:85:1                                         
+    Included from ../testbench/testbench.sv:4:10                              
+    ./../testbench/scoreboard.sv:87:1                                         
+    Included from ../testbench/testbench.sv:4:10                              
+    ./../testbench/monitor.sv:3:1                                             
+    Included from ../testbench/testbench.sv:5:10                              
+    ./../testbench/monitor.sv:19:1                                            
+    Included from ../testbench/testbench.sv:5:10                              
+    ./../testbench/monitor.sv:30:1                                            
+    Included from ../testbench/testbench.sv:5:10                              
+    ./../testbench/monitor.sv:68:1                                            
+    Included from ../testbench/testbench.sv:5:10                              
+    ./../testbench/agent.sv:2:1                                               
+    Included from ../testbench/testbench.sv:6:10                              
+    ./../testbench/agent.sv:20:1                                              
+    Included from ../testbench/testbench.sv:6:10                              
+    ./../testbench/agent.sv:46:1                                              
+    Included from ../testbench/testbench.sv:6:10                              
+    ./../testbench/agent.sv:59:1                                              
+    Included from ../testbench/testbench.sv:6:10                              
+    ./../testbench/env.sv:3:1                                                 
+    Included from ../testbench/testbench.sv:7:10                              
+    ./../testbench/env.sv:18:1                                                
+    Included from ../testbench/testbench.sv:7:10                              
+    ./../testbench/test_1.sv:2:1                                              
+    Included from ../testbench/testbench.sv:8:10                              
+    ./../testbench/test_1.sv:15:1                                             
+    Included from ../testbench/testbench.sv:8:10                              
+

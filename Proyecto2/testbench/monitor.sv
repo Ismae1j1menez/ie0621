@@ -1,60 +1,95 @@
-class monitor;
-  scoreboard sb;
-  virtual interface_bus_master vif_int;
+// Clase del monitor esta bien no hacer cambios porfavor
+class sdram_monitor extends uvm_monitor;
+  `uvm_component_utils(sdram_monitor)
+
+  virtual interface_bus_master vif;
+  bit enable_check = 0;
+  bit enable_coverage = 0;
+  uvm_analysis_port #(arb_item) mon_analysis_port;
+
+  function new (string name, uvm_component parent=null);
+    super.new(name, parent);
+  endfunction
+
+  virtual function void build_phase (uvm_phase phase);
+    super.build_phase(phase);
+    mon_analysis_port = new("mon_analysis_port", this);
+
+    if (uvm_config_db #(virtual interface_bus_master)::get(this, "", "VIRTUAL_INTERFACE", vif) == 0) begin
+       `uvm_fatal("INTERFACE_CONNECT", "No se pudo obtener la interfaz virtual para el TB")
+    end
+  endfunction
+
+  virtual task run_phase (uvm_phase phase);
+    super.run_phase(phase);
+  endtask   
+endclass
+
+
+class sdram_monitor_w extends sdram_monitor;
+  `uvm_component_utils(sdram_monitor_w)
   
-  int err_count;
-  bit [31:0] addr, data;
-  bit write_en;
-  logic [31:0] sb_value;
+  function new(string name, uvm_component parent=null);
+    super.new(name, parent);
+  endfunction
+
+  virtual function void build_phase(uvm_phase phase);
+    super.build_phase(phase);
+  endfunction
   
-  function new(virtual interface_bus_master vif_ext, scoreboard sb);
-    this.vif_int = vif_ext;
+  virtual task run_phase (uvm_phase phase);
+    arb_item data_obj = arb_item::type_id::create("data_obj", this);
+  
+    // Este forever fue modificado
+    forever begin
+      @(posedge vif.sys_clk);
+      if (vif.wb_stb_i == 1 && vif.wb_cyc_i == 1 && vif.wb_we_i == 1 && vif.wb_ack_o == 1'b1) begin
+      	data_obj = arb_item::type_id::create("data_obj", this);
+        data_obj.Address = vif.wb_addr_i;
+        data_obj.writte = vif.wb_dat_i;
+        data_obj.command = 1;
+        mon_analysis_port.write(data_obj);
+      end
+      
+       // do begin
+        //  @(posedge vif.sys_clk);
+       // end while (vif.wb_ack_o == 1'b0);
+       // @(negedge vif.sys_clk);
+end
+    
+  endtask
+endclass
+
+
+// Esta tarea esta modificada
+// Nota revision: el scoreboard no debe estar istanciado aqui, quitarlo. 
+// Esta clase debe ser lo mas parecida el read del FIFO
+class sdram_monitor_r extends sdram_monitor;
+  `uvm_component_utils(sdram_monitor_r)
+  sdram_scoreboard  sb; 
+  function new(string name, uvm_component parent=null, sdram_scoreboard sb=null);
+    super.new(name, parent);
     this.sb = sb;
   endfunction
 
-  task check();
-    err_count = 0;
-    // Siempre esta ejecutando, porque debe estar revisando constantemente
-    forever begin
-      @ (posedge vif_int.sys_clk);
-      // Si estan en esta configuracion las señales significa que se esta escribiendo un dato
-      if (vif_int.wb_stb_i == 1 && vif_int.wb_cyc_i == 1 && vif_int.wb_we_i == 1) begin 
-        sb.add_entry(vif_int.wb_addr_i, vif_int.wb_addr_i, vif_int.wb_dat_i, 1'b0);
-        
-        // Utilizado para sincronizar y esperar al ack para saber que se puede esribir el dato
-        do begin
-          @ (posedge vif_int.sys_clk);
-        end while(vif_int.wb_ack_o == 1'b0); // Debe esperar a recibir el ack
-        if (sb.find_entry(vif_int.wb_addr_i, addr, data, write_en) == 0) begin  
-          
-        sb.add_entry(vif_int.wb_addr_i, vif_int.wb_addr_i, vif_int.wb_dat_i, 1'b0);
-        end
-        @ (negedge vif_int.sys_clk);
-      end
-      
-      // Si estan en estea configuracion estas señales significa que se esta leyendo un dato 
-      if (vif_int.wb_we_i == 0 && vif_int.wb_stb_i == 1 && vif_int.wb_cyc_i == 1) begin 
-		
-        // Utilizado para sincronizar y esperar al ack para saber que se puede leer el dato
-        do begin
-          @(posedge vif_int.sys_clk); 
-        end while (vif_int.wb_ack_o == 1'b0); // Debe esperar a recibir el ack
-        sb_value = sb.find_entry(vif_int.wb_addr_i, addr, data, write_en); 
-        $display("Test:                               Expected SB value: %0h, DUT output: %0h", data, vif_int.wb_dat_o);
-        
-        // Realiza la comparacion entre el dato leido de la SDRAM con el guardado en el scoreboard
-        if (vif_int.wb_dat_o != data ) begin
-          $display("Test Estatus:                       * ERROR * DUT data is %0h :: SB data is %0h", vif_int.wb_dat_o, data);
-          err_count++;
-          
-        end else begin
-          if (vif_int.wb_dat_o)begin
-          $display("Test Estatus:                       * PASS * DUT data is %0h :: SB data is %0h", vif_int.wb_dat_o, data);
-          end else begin
-            $display("Test Estatus:                       * Value not found * DUT data is %0h", vif_int.wb_dat_o);
-          end
-        end
-      end
-    end 
-  endtask 
+  virtual function void build_phase(uvm_phase phase);
+    super.build_phase(phase);
+  endfunction
+  
+  virtual task run_phase(uvm_phase phase);
+  bit [31:0] addr;
+  arb_item data_obj;
+
+  forever begin
+    @ (posedge vif.sys_clk);
+
+    // Ensure sb is not null before accessing
+    if (sb != null && sb.get_unread_entry()) begin
+      data_obj = arb_item::type_id::create("data_obj", this);
+      data_obj.Address = addr;
+      data_obj.command = 0; 
+      mon_analysis_port.write(data_obj);
+    end
+  end
+endtask
 endclass

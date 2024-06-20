@@ -10,10 +10,10 @@
 -y ../design/
 ../design/design.sv
 
-+incdir+../testbench
++incdir+../testbench/
 -y ../testbench/
-
 ../testbench/testbench.sv
 
+-uvm 1.2
 
 

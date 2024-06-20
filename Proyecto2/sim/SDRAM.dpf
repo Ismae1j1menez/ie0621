@@ -7,11 +7,11 @@ design_root_dir: ../..
 simulations:
   - name: Sim 1
     options: >-
-      -top dut.tb_top -L dut +acc+b -waves waves.mxd -warn EnumMustBePositive
-      -timescale 1ns/1ps
+      -top work.top_hvl -L dut -uvm 1.2 +acc+b -waves waves.mxd -warn
+      EnumMustBePositive -timescale 1ns/1ps +UVM_TESTNAME=test_1
 source_files:
   - language: verilog
-    path: filelist.txt
+    path: filelist_V.txt
     library_name: dut
     file_list: relative-to-file
 library_search_paths:

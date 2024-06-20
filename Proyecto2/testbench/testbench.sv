@@ -1,16 +1,11 @@
-
-
-`include "scoreboard.sv"
-`include "stimulus.sv"
-`include "monitor.sv"
-
-`include "driver_bus_master.sv"
+`include "top_hvl.sv"
 `include "interface_bus_master.sv"
+`include "driver.sv"
+`include "scoreboard.sv"
+`include "monitor.sv"
+`include "agent.sv"
 `include "env.sv"
-`include "tb_top.sv"
-`include "test1.sv"
-//`include "test2.sv"
-//`include "test3.sv"
+`include "test_1.sv"
+//`include "IS42VM16400K.V"
 `include "mt48lc8m8a2.v"
-
-
+`include "mt48lc2m32b2.v"
