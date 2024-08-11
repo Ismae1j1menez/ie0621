@@ -49,5 +49,16 @@ Este proyecto realiza la verificación de un controlador SDRAM utilizando System
 
 Este proyecto fue desarrollado y puede ser ejecutado fácilmente en la plataforma EDA Playground. Puedes acceder al proyecto y ejecutarlo utilizando el siguiente enlace:
 
-🔗 [EDA Playground - Verificación Controlador SDRAM](https://www.edaplayground.com/x/rJYB)
+🔗 [EDA Playground - Verificación del Controlador SDRAM - SV por capas](https://www.edaplayground.com/x/rJYB)
 
+
+### **Comando de Compilación**
+
+Para compilar el proyecto, se utilizó el siguiente comando de compilación:
+
+```bash
+-timescale=1ns/1ns +vcs+flush+all +warn=all -sverilog +define+S50
+```
+
+### Herramientas Utilizadas
+El proyecto se verificó utilizando la versión Synopsys VCS 2023.03, como se especifica en el simulador de EDA Playground.
