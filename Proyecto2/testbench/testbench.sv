@@ -1,8 +1,0 @@
-`include "top_hvl.sv"
-`include "interface_bus_master.sv"
-`include "driver.sv"
-`include "scoreboard.sv"
-`include "monitor.sv"
-`include "agent.sv"
-`include "env.sv"
-`include "test_1.sv"
